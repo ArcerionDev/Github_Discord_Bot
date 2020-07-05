@@ -1,0 +1,15 @@
+{
+  "name": "github_discord_bot",
+  "version": "1.0.0",
+  "description": "Bot for Discord that integrates with Github.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Arcerion#8583",
+  "license": "ISC",
+  "dependencies": {
+    "discord.js": "^12.2.0",
+    "node-fetch": "^2.6.0"
+  }
+}
