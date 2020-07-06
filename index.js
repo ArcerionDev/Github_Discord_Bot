@@ -23,10 +23,18 @@ case 'g!help':
     .setDescription("Here are the current commands:")
     .addField('g!user','Shows info on a Github user. Usage: g!user [user].', false)
     .addField('g!repo', 'Allows you to see info on a Github repository. Usage: g!repo [owner/reponame]',false)
+    .addField('g!ping', 'Pong!',false)
     .setTimestamp()
     .setFooter(`Requested by ${message.author.tag} | This bot is not affiliated with Github in any way.`)
     message.channel.send(helpembed)
     break;
+    case 'g!ping':
+        var ping = Math.round(bot.ws.ping) + ' ms'
+        const pingresponse = new Discord.MessageEmbed()
+            .setColor('#00000')
+            .setTitle('Pong! Latency is ' + '`' + ping + '`')
+        message.channel.send(pingresponse)
+        break;
     case 'g!user':
     if(!args[1]){
        const argsemb = new Discord.MessageEmbed()
