@@ -77,6 +77,15 @@ bot.on('message', message => {
                         if (!userdata.bio) { hasBio = "This user doesn't have a description." } else {
                             hasBio = userdata.bio
                         }
+                        if(!userdata.public_repos){
+                            userdata.public_repos = 0
+                        }
+                        if(!userdata.followers){
+                            userdata.followers = 0
+                        }
+                        if(!userdata.following){
+                            userdata.following = 0
+                        }
                         const userembed = new Discord.MessageEmbed()
                             .setThumbnail(userdata.avatar_url)
                             .setColor('#00000')
@@ -235,6 +244,123 @@ bot.on('message', message => {
                     .setTitle('**An error occured, please try again later.**')
                 message.channel.send(erroremb)
             }
+            break;
+
+        case 'g!usersearch':
+            try {
+                if (!args[1]) {
+                    const argsembed = new Discord.MessageEmbed()
+                        .setColor('#00000')
+                        .setTitle('**Provide a query.**')
+                    message.channel.send(argsembed)
+                } else {
+                    if (args.length > 2) {
+                        const queryembed = new Discord.MessageEmbed()
+                            .setColor('#00000')
+                            .setTitle(`**Keep your query to one word.**`)
+                        message.channel.send(queryembed)
+                    } else {
+                        if (args[1].length > 249) {
+                            const toolongemb = new Discord.MessageEmbed()
+                                .setColor('#00000')
+                                .setTitle(`**Github doesn't support search queries over 250 characters. Try making a shorter query.**`)
+                            message.channel.send(toolongemb)
+                        } else {
+                            async function searchUsers() {
+                                let searchdata = await (await fetch(`https://api.github.com/search/users?q=${args[1]}`)).json()
+                                let popnum = searchdata.items.length - 10
+                                if (searchdata.items.length > 10) {
+                                    for (i = 0; i < popnum; i++) {
+                                        searchdata.items.pop()
+                                    }
+
+                                }
+                                let userurls = []
+                                for (i = 0; i < searchdata.items.length; i++) {
+                                    userurls.push(`[${i + 1}]: ` + searchdata.items[i].html_url)
+                                }
+                                userurls.join('\n')
+                                const usersearchembed = new Discord.MessageEmbed()
+                                    .setTitle('Here are the top 10 results for your search.')
+                                    .setColor('#00000')
+                                    .setDescription(userurls)
+                                    .setFooter('Chat a number 1-10 to see the info on the respective user.')
+                                message.channel.send(usersearchembed)
+
+                                message.channel.awaitMessages(m => m.author.id == message.author.id,
+                                    { max: 1, time: 60000000 }).then(collected => {
+                                        let arrnum = collected.first().content - 1
+                                        let correctarr = searchdata.items[arrnum]
+                                        if (!correctarr) {
+                                            const errembed = new Discord.MessageEmbed()
+                                                .setColor('#00000')
+                                                .setTitle(`**Error. Either you didn't enter a number 1-10, or the number of search results is less then 10.**`)
+                                            message.channel.send(errembed)
+                                        } else {
+                                            let hasEmail;
+                        if (!correctarr.email) { hasEmail = 'This user does not have a public email.' } else {
+                            hasEmail = correctarr.email
+                        }
+                        let hasSite;
+                        if (!correctarr.blog) { hasSite = 'This user does not have a website.' } else {
+                            hasSite = correctarr.blog
+                        }
+                        let hasName;
+                        if (!correctarr.name) { hasName = correctarr.login } else {
+                            hasName = correctarr.name
+                        }
+                        let hasLocation;
+                        if (!correctarr.location) { hasLocation = "This user doesn't have a public location." } else {
+                            hasLocation = correctarr.location
+                        }
+                        let hasCompany;
+                        if (!correctarr.company) { hasCompany = "This user doesn't work for anyone." } else {
+                            hasCompany = correctarr.company
+                        }
+                        let hasBio;
+                        if (!correctarr.bio) { hasBio = "This user doesn't have a description." } else {
+                            hasBio = correctarr.bio
+                        }
+                        if(!correctarr.public_repos){
+                            correctarr.public_repos = 0
+                        }
+                        if(!correctarr.followers){
+                            correctarr.followers = 0
+                        }
+                        if(!correctarr.following){
+                            correctarr.following = 0
+                        }
+                        const usersearchembed = new Discord.MessageEmbed()
+                            .setThumbnail(correctarr.avatar_url)
+                            .setColor('#00000')
+                            .setTitle(`${correctarr.login} - Data`)
+                            .setDescription(`Description: ` + hasBio)
+                            .setURL(correctarr.html_url, true)
+                            .addField(':bust_in_silhouette: Name:', hasName, true)
+                            .addField(':house: Location: ', hasLocation, true)
+                            .addField(':link: Website: ', hasSite, true)
+                            .addField(':office: Company:', hasCompany, true)
+                            .addField(':envelope: Email: ', hasEmail, true)
+                            .addField(':eyes: Followers:', correctarr.followers, true)
+                            .addField(':busts_in_silhouette: Following:', correctarr.following, true)
+                            .addField('<:gitlogo:719597168247177336> Repositories:', correctarr.public_repos, true)
+                            .addField('<:magnifying_glass:729412713083830324> ID: ', correctarr.id, true)
+                        message.channel.send(usersearchembed)
+                    }
+                                    })
+                            }
+                            searchUsers()
+                        }
+                    }
+                }
+            } catch{
+                const errorembed = new Discord.MessageEmbed()
+                    .setColor('#00000')
+                    .setTitle('**An error occured, please try again later.**')
+                message.channel.send(errorembed)
+            }
+            break;
+
 
     }
 })
