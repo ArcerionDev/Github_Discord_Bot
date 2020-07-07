@@ -184,7 +184,7 @@ bot.on('message', message => {
                                         if (!correctarr) {
                                             const errembed = new Discord.MessageEmbed()
                                                 .setColor('#00000')
-                                                .setTitle('**Invalid choice. Respond with a number 1-10.**')
+                                                .setTitle(`**Error. Either you didn't enter a number 1-10, or the number of search results is less then 10.**`)
                                             message.channel.send(errembed)
                                         } else {
                                             if (!correctarr.open_issues) {
