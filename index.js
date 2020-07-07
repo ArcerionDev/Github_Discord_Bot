@@ -4,7 +4,6 @@ const fetch = require('node-fetch')
 const prefix = "";
 const token = require('./token.json').token
 const credentials = require('./credentials.json').creds
-const btoa = require('btoa')
 bot.on('ready', () => {
     console.log('Online');
     bot.user.setActivity('g!help', {
