@@ -1,2 +1,2 @@
 ﻿# Github Discord Bot
-This bot uses NodeJS to fetch the Github api.
+This bot uses NodeJS and DiscordJS to fetch the Github api.
