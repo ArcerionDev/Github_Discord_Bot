@@ -28,6 +28,8 @@ bot.on('message', message => {
                 .addField('g!repo', 'Allows you to see info on a Github repository. Usage: g!repo [owner/reponame]', false)
                 .addField('g!ping', 'Pong!', false)
                 .addField('g!search', 'Searches for repos. Usage: g!search [query]', false)
+                .addField('g!usersearch', 'Searches for users. Usage: g!usersearch [query]', false)
+                .addField('g!codesearch', 'Searches for code. Usage: g!codesearch [query]', false)
                 .setTimestamp()
                 .setFooter(`Requested by ${message.author.tag} | This bot is not affiliated with Github in any way.`)
             message.channel.send(helpembed)
