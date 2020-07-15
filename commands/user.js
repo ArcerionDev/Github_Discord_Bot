@@ -16,7 +16,6 @@ module.exports = {
                     const erremb = new Discord.MessageEmbed()
                         .setColor('#00000')
                         .setTitle('**Invalid user.**')
-                        .setFooter("Check your spelling?")
                     message.channel.send(erremb)
                 } else {
                     let hasEmail;

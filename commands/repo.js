@@ -4,8 +4,20 @@ module.exports = {
     name: 'repo',
     description: 'gets github repos',
     execute(message, args, Discord){
+        if(!args[1]){
+            const errorembed = new Discord.MessageEmbed()
+            .setTitle("**Provide a repository.**")
+            .setColor("#00000")
+            message.channel.send(errorembed)
+        }else{
         async function getRepo() {
             let repodata = await (await fetch(`https://api.github.com/repos/${args[1]}`)).json()
+            if(!repodata.name){
+                const errorembed = new Discord.MessageEmbed()
+                .setTitle("**Invalid repository.**")
+                .setColor("#00000")
+                message.channel.send(errorembed)  
+            }else{
             if (!repodata.open_issues) {
                 repodata.open_issues = 'There are no open issues.'
             }
@@ -38,6 +50,6 @@ module.exports = {
                 .addField('<:magnifying_glass:729412713083830324> ID:', repodata.id)
             message.channel.send(repoembed)
 
-        }
+        }}
         getRepo()
-    }}
+    }}}

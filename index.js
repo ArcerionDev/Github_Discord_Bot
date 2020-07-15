@@ -44,6 +44,10 @@ break;
         case 'g!usersearch':
           bot.commands.get('usersearch').execute(message, args, Discord, bot);
           break;
+          case 'g!issues':
+          bot.commands.get('issues').execute(message, args, Discord, bot);
+          break;
+
 }
 })
 bot.login(token)
