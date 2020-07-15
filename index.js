@@ -1,7 +1,11 @@
 const Discord = require('discord.js')
 const bot = new Discord.Client()
+const fetch = require('node-fetch')
 const prefix = ""
+const btoa = require('btoa')
 const token = require('./tokens.json').token
+const githubtoken = require('./tokens.json').github_token
+const credentials = require('./credentials.json').creds
 const fs = require('fs')
 bot.commands = new Discord.Collection();
 const commandFiles = fs.readdirSync('./commands/').filter(file => file.endsWith('.js'));
@@ -23,9 +27,6 @@ bot.on('message', message => {
     switch (args[0]) {
         case 'g!help':
             bot.commands.get('help').execute(message, args, Discord, bot);
-            break;
-        case 'g!ping':
-            bot.commands.get('ping').execute(message, args, Discord, bot);
             break;
         case 'g!user':
             bot.commands.get('user').execute(message, args, Discord, bot);
