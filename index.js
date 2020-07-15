@@ -1,11 +1,7 @@
 const Discord = require('discord.js')
 const bot = new Discord.Client()
-const fetch = require('node-fetch')
 const prefix = ""
-const btoa = require('btoa')
 const token = require('./tokens.json').token
-const githubtoken = require('./tokens.json').github_token
-const credentials = require('./credentials.json').creds
 const fs = require('fs')
 bot.commands = new Discord.Collection();
 const commandFiles = fs.readdirSync('./commands/').filter(file => file.endsWith('.js'));
