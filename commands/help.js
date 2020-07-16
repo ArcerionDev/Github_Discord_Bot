@@ -17,6 +17,7 @@ module.exports = {
         .addField('g!usersearch', 'Searches for users. Usage: g!usersearch [query]', false)
         .addField('g!codesearch', 'Searches for code. Usage: g!codesearch [query]', false)
         .addField('g!issues', 'Shows issues in a repository. Usage: g!issues [Owner/repository_name]', false)
+        .addField('g!gitignore', 'Shows all of the .gitignore templates available.', false)
         .setTimestamp()
         .setFooter(`Requested by ${message.author.tag} | This bot is not affiliated with Github in any way.`)
     message.channel.send(helpembed)
