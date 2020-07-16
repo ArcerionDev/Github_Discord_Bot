@@ -47,7 +47,9 @@ break;
           case 'g!issues':
           bot.commands.get('issues').execute(message, args, Discord, bot);
           break;
-
+          case 'g!gitignore':
+            bot.commands.get('gitignore').execute(message, args, Discord, bot);
+break;          
 }
 })
 bot.login(token)
