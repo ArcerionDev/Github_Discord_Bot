@@ -18,6 +18,8 @@ module.exports = {
         .addField('g!codesearch', 'Searches for code. Usage: g!codesearch [query]', false)
         .addField('g!issues', 'Shows issues in a repository. Usage: g!issues [Owner/repository_name]', false)
         .addField('g!gitignore', 'Shows all of the .gitignore templates available.', false)
+        .addField('g!licenses','Shows all Github license templates, and a link to a text file.',false)
+        .addField('g!orgs','Shows info on a Github organization. Usage: g!org [Organization_Name]',false)
         .setTimestamp()
         .setFooter(`Requested by ${message.author.tag} | This bot is not affiliated with Github in any way.`)
     message.channel.send(helpembed)

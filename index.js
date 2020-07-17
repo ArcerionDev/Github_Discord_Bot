@@ -9,9 +9,9 @@ const credentials = require('./credentials.json').creds
 const fs = require('fs')
 bot.commands = new Discord.Collection();
 const commandFiles = fs.readdirSync('./commands/').filter(file => file.endsWith('.js'));
-for(const file of commandFiles){
+for (const file of commandFiles) {
     const command = require(`./commands/${file}`);
- bot.commands.set(command.name, command);
+    bot.commands.set(command.name, command);
 }
 
 
@@ -30,7 +30,7 @@ bot.on('message', message => {
             break;
         case 'g!user':
             bot.commands.get('user').execute(message, args, Discord, bot);
-break;
+            break;
         case 'g!repo':
             bot.commands.get('repo').execute(message, args, Discord, bot);
             break;
@@ -42,15 +42,21 @@ break;
             break;
 
         case 'g!usersearch':
-          bot.commands.get('usersearch').execute(message, args, Discord, bot);
-          break;
-          case 'g!issues':
-          bot.commands.get('issues').execute(message, args, Discord, bot);
-          break;
-          case 'g!gitignore':
+            bot.commands.get('usersearch').execute(message, args, Discord, bot);
+            break;
+        case 'g!issues':
+            bot.commands.get('issues').execute(message, args, Discord, bot);
+            break;
+        case 'g!gitignore':
             bot.commands.get('gitignore').execute(message, args, Discord, bot);
-break;          
-}
+            break;
+        case 'g!licenses':
+            bot.commands.get('licenses').execute(message, args, Discord, bot);
+            break;
+        case 'g!orgs':
+            bot.commands.get('orgs').execute(message, args, Discord, bot);
+
+    }
 })
 bot.login(token)
 
