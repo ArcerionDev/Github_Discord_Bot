@@ -13,8 +13,7 @@ for (const file of commandFiles) {
     const command = require(`./commands/${file}`);
     bot.commands.set(command.name, command);
 }
-
-
+let data = bot.users.fetch('683792601219989601')
 bot.on('ready', () => {
     console.log('Online');
     bot.user.setActivity('g!help', {
@@ -56,10 +55,7 @@ bot.on('message', message => {
         case 'g!orgs':
             bot.commands.get('orgs').execute(message, args, Discord, bot);
             break;
-        case 'g!src':
-            bot.commands.get('src').execute(message, args, Discord, bot);
-            break;
-
+      
     }
 })
 bot.login(token)
