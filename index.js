@@ -55,6 +55,10 @@ bot.on('message', message => {
             break;
         case 'g!orgs':
             bot.commands.get('orgs').execute(message, args, Discord, bot);
+            break;
+        case 'g!src':
+            bot.commands.get('src').execute(message, args, Discord, bot);
+            break;
 
     }
 })
