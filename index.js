@@ -13,7 +13,6 @@ for (const file of commandFiles) {
     const command = require(`./commands/${file}`);
     bot.commands.set(command.name, command);
 }
-let data = bot.users.fetch('683792601219989601')
 bot.on('ready', () => {
     console.log('Online');
     bot.user.setActivity('g!help', {

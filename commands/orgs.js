@@ -63,6 +63,7 @@ module.exports = {
                         .setTitle(`${orgdata.name} - General Data`)
                         .setURL(orgdata.html_url)
                         .setThumbnail(orgdata.avatar_url)
+                        .setColor('#00000')
                         .setDescription(`Description: ${orgdata.description}`)
                         .addField(':link: Website:', orgdata.blog)
                         .addField(':office: Company:', orgdata.company)
@@ -70,6 +71,7 @@ module.exports = {
                         .addField('<:gitlogo:719597168247177336> Repositories:', orgdata.public_repos)
                         .addField('<:Twitter:733713078604136498> Twitter:', orgdata.twitter_username)
                         .setFooter("People: " + contributors)
+                        .addField('<:magnifying_glass:729412713083830324> ID:', orgdata.id)
                     message.channel.send(orgemb)
         
         
