@@ -12,7 +12,6 @@ module.exports = {
         .setDescription("Here are the current commands:")
         .addField('g!user', 'Shows info on a Github user. Usage: g!user [user].', false)
         .addField('g!repo', 'Allows you to see info on a Github repository. Usage: g!repo [owner/reponame]', false)
-        .addField('g!ping', 'Pong!', false)
         .addField('g!search', 'Searches for repos. Usage: g!search [query]', false)
         .addField('g!usersearch', 'Searches for users. Usage: g!usersearch [query]', false)
         .addField('g!codesearch', 'Searches for code. Usage: g!codesearch [query]', false)
